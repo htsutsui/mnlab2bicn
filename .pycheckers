@@ -1,0 +1,3 @@
+[DEFAULT]
+ignore_codes = C0103
+checkers = pylint, mypy3, flake8, pyflakes
