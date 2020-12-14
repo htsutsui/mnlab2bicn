@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 
+"""
+Sample script for MNLab2BICN.
+
+メディアネットワーク実験IIB 項目Iで利用するサンプル．
+
+PSK および QAM は適切に実装されていません．`要修正`を要修正です．
+"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -11,6 +19,20 @@ verbose_awgn = False
 
 
 def psk_test(m_level, i_snr, i_size, plot=False, gray=False):
+    """PSK test
+
+    Parameters
+    ----------
+    m_level: modulation level (integer)
+    i_snr: SNR in dB
+    i_size: number of samples
+    plot: optional. if True, scatter plot will be generated.
+    gray: optional. if True, gray code is used.
+
+    Returns
+    -------
+    (SER, BER)
+    """
     src = np.random.randint(m_level, size=i_size)
 
     x = int2gray(src) if gray else src
@@ -38,6 +60,20 @@ def psk_test(m_level, i_snr, i_size, plot=False, gray=False):
 
 
 def qam_test(m_level, i_snr, i_size, plot=False, gray=False):
+    """QAM test
+
+    Parameters
+    ----------
+    m_level: modulation level (integer)
+    i_snr: SNR in dB
+    i_size: number of samples
+    plot: optional. if True, scatter plot will be generated.
+    gray: optional. if True, gray code is used.
+
+    Returns
+    -------
+    (SER, BER)
+    """
     src = np.random.randint(m_level, size=i_size)
     k = int(np.log2(m_level))
     smax = 2 ** (k // 2) - 1
