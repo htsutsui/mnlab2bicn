@@ -2,7 +2,7 @@
 MNLab2BICN
 ==========
 
-メディアネットワーク実験IIA 項目I で利用する関数をまとめています．
+メディアネットワーク実験IIB 項目I で利用する関数をまとめています．
 """
 
 import matplotlib.pyplot as plt
