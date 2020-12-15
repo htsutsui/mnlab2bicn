@@ -128,7 +128,7 @@ qam_test(64, 30, 4000, plot=True)
 
 plt.rcParams.update({'font.size': 12})
 
-# PSK QAM Comparison
+# PSK/QAM Comparison
 
 size = 10000
 for m in [64, 16, 4]:
@@ -165,7 +165,7 @@ plt.savefig("PSK_QAM.png")
 plt.savefig("PSK_QAM.pdf")
 plt.close()
 
-# PSK Gray Comparison
+# PSK Gray Code Comparison
 
 size = 10000
 for m in [64, 16, 4]:
@@ -202,7 +202,7 @@ plt.savefig("PSK_gray.png")
 plt.savefig("PSK_gray.pdf")
 plt.close()
 
-# QAM Gray Comparison
+# QAM Gray Code Comparison
 
 size = 10000
 for m in [64, 16, 4]:
