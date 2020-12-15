@@ -83,7 +83,7 @@ def calc_ber(src, dst, m):
     c = 0
     for i in x[np.where(x != 0)]:
         c += __ber_count(i)
-    return c / (np.log2(m)*len(src))
+    return c / (np.log2(m)*np.size(src))
 
 
 def scatter_plot(x, filename=None, alpha=0.1, fontsize=None):
