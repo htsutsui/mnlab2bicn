@@ -76,7 +76,8 @@ def calc_ber(src, dst, m):
     # pylint: disable=no-member
     f = np.vectorize(lambda i: gmpy2.popcount(int(i)))
 
-    c = np.sum(f(x[np.where(x != 0)]))
+    x = x[np.where(x != 0)]
+    c = np.sum(f(x)) if np.size(x == 0) else 0
     return c / (np.log2(m)*np.size(src))
 
 

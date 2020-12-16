@@ -29,6 +29,9 @@ def test_ser_ber():
     a = np.zeros(16 * size, dtype='int')
     a = a.reshape((2, 2, 2, 2, size))
     b = a.copy()
+    for i in range(1, 8):
+        assert icn.calc_ser(a, b) == 0
+        assert icn.calc_ber(a, b, 2**i) == 0
     b[::2] = 1
     for i in range(1, 8):
         assert icn.calc_ser(a, b) == 0.5
