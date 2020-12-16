@@ -7,6 +7,7 @@ MNLab2BICN
 
 import matplotlib.pyplot as plt
 import numpy as np
+import gmpy2
 import gray
 
 
@@ -56,15 +57,6 @@ def calc_ser(src, dst):
     return np.count_nonzero(src != dst) / np.size(src)
 
 
-def __ber_count(num):
-    c = 0
-    while num != 0:
-        if num & 1 != 0:
-            c += 1
-        num >>= 1
-    return c
-
-
 def calc_ber(src, dst, m):
     """Calculate bit error rate (BER)
 
@@ -80,9 +72,11 @@ def calc_ber(src, dst, m):
     SER
     """
     x = src ^ dst
-    c = 0
-    for i in x[np.where(x != 0)]:
-        c += __ber_count(i)
+
+    # pylint: disable=no-member
+    f = np.vectorize(lambda i: gmpy2.popcount(int(i)))
+
+    c = np.sum(f(x[np.where(x != 0)]))
     return c / (np.log2(m)*np.size(src))
 
 
