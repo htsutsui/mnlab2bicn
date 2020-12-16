@@ -22,10 +22,9 @@ def test_awgn():
     icn.awgn(a, 10)
 
 
-def test_ser_ber():
+def test_ser_ber(size=1000):
     """Test SER and BER calculation
     """
-    size = 1000
     a = np.zeros(16 * size, dtype='int')
     a = a.reshape((2, 2, 2, 2, size))
     b = a.copy()
