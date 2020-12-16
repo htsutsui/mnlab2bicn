@@ -25,8 +25,9 @@ def test_awgn():
 def test_ser_ber():
     """Test SER and BER calculation
     """
-    a = np.zeros(16 * 1000, dtype='int')
-    a = a.reshape((2, 2, 2, 2, 1000))
+    size = 1000
+    a = np.zeros(16 * size, dtype='int')
+    a = a.reshape((2, 2, 2, 2, size))
     b = a.copy()
     b[::2] = 1
     for i in range(1, 8):
