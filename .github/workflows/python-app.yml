@@ -22,10 +22,10 @@ jobs:
         python-version: 3.8
     - name: Install dependencies
       run: |
-        apt-get update
-        apt-get install libgmp-dev
-        apt-get install libmpfr-dev
-        apt-get install libmpc-dev
+        sudo apt-get update
+        sudo apt-get install libgmp-dev
+        sudo apt-get install libmpfr-dev
+        sudo apt-get install libmpc-dev
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
