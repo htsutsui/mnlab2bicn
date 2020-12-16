@@ -138,7 +138,7 @@ for m in [64, 16, 4]:
         ser, ber = psk_test(m, snr, size)
         if verbose:
             print([snr, m, ser, ber])
-        if ber < 1e-5:
+        if ber < 1e-6:
             break
         snrs.append(snr)
         bers.append(ber)
@@ -149,7 +149,7 @@ for m in [64, 16, 4]:
         ser, ber = qam_test(m, snr, size)
         if verbose:
             print([snr, m, ser, ber])
-        if ber < 1e-5:
+        if ber < 1e-6:
             break
         snrs.append(snr)
         bers.append(ber)
@@ -175,7 +175,7 @@ for m in [64, 16, 4]:
         ser, ber = psk_test(m, snr, size)
         if verbose:
             print([snr, m, ser, ber])
-        if ber < 1e-5:
+        if ber < 1e-6:
             break
         snrs.append(snr)
         bers.append(ber)
@@ -186,7 +186,7 @@ for m in [64, 16, 4]:
         ser, ber = psk_test(m, snr, size, gray=True)
         if verbose:
             print([snr, m, ser, ber])
-        if ber < 1e-5:
+        if ber < 1e-6:
             break
         snrs.append(snr)
         bers.append(ber)
@@ -212,7 +212,7 @@ for m in [64, 16, 4]:
         ser, ber = qam_test(m, snr, size)
         if verbose:
             print([snr, m, ser, ber])
-        if ber < 1e-5:
+        if ber < 1e-6:
             break
         snrs.append(snr)
         bers.append(ber)
@@ -223,7 +223,7 @@ for m in [64, 16, 4]:
         ser, ber = qam_test(m, snr, size, gray=True)
         if verbose:
             print([snr, m, ser, ber])
-        if ber < 1e-5:
+        if ber < 1e-6:
             break
         snrs.append(snr)
         bers.append(ber)
