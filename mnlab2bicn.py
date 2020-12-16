@@ -5,10 +5,14 @@ MNLab2BICN
 メディアネットワーク実験IIB 項目I で利用する関数をまとめています．
 """
 
+from importlib import util
 import matplotlib.pyplot as plt
 import numpy as np
-import gmpy2
 import gray
+
+__gmpy2 = util.find_spec("gmpy2")
+if __gmpy2:
+    import gmpy2
 
 
 def __power(x):
@@ -74,7 +78,10 @@ def calc_ber(src, dst, m):
     x = src ^ dst
 
     # pylint: disable=no-member
-    f = np.vectorize(lambda i: gmpy2.popcount(int(i)))
+    if __gmpy2:
+        f = np.vectorize(lambda i: gmpy2.popcount(int(i)))
+    else:
+        f = np.vectorize(lambda i: bin(i).count('1'))
 
     x = x[np.where(x != 0)]
     c = np.sum(f(x)) if np.size(x == 0) else 0
