@@ -119,7 +119,6 @@ def scatter_plot(x, filename=None, alpha=0.1, fontsize=None):
         plt.savefig(f"{filename}.pdf")
     else:
         plt.show()
-    plt.close()
 
 
 int2gray = gray.gray_encode
