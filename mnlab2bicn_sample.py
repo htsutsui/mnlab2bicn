@@ -121,10 +121,15 @@ def qam_test(m_level, i_snr, i_size, plot=False, gray=False):
 plt.rcParams.update({'font.size': 16})
 
 psk_test(4, 30, 100, plot=True)
+plt.close()
 psk_test(8, 50, 100, plot=True)
+plt.close()
 psk_test(16, 40, 4000, plot=True)
+plt.close()
 qam_test(16, 30, 4000, plot=True)
+plt.close()
 qam_test(64, 30, 4000, plot=True)
+plt.close()
 
 plt.rcParams.update({'font.size': 12})
 
