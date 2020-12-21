@@ -8,16 +8,19 @@ Sample script for MNLab2BICN.
 PSK および QAM は適切に実装されていません．`要修正`を要修正です．
 """
 
+# NumPy と Matplotlib を使うので`import`する．
 import matplotlib.pyplot as plt
 import numpy as np
 
+# 実験で使用するあらかじめ用意されている関数を`import`する．
 from mnlab2bicn import awgn, calc_ser, calc_ber, \
     int2gray, gray2int, scatter_plot
 
-verbose = True
+# このscript中で利用するdebug用の変数．
+verbose = True # True だと for loop の処理の状況(進み具合)が確認できる
 verbose_awgn = False
 
-
+# PSKのシミュレーションを行う関数を定義する．
 def psk_test(m_level, i_snr, i_size, plot=False, gray=False):
     """PSK test
 
@@ -59,6 +62,7 @@ def psk_test(m_level, i_snr, i_size, plot=False, gray=False):
     return (calc_ser(src, dst), calc_ber(src, dst, m_level))
 
 
+# QAMのシミュレーションを行う関数を定義する．
 def qam_test(m_level, i_snr, i_size, plot=False, gray=False):
     """QAM test
 
@@ -117,24 +121,37 @@ def qam_test(m_level, i_snr, i_size, plot=False, gray=False):
 
     return (calc_ser(src, dst), calc_ber(src, dst, m_level))
 
-
+# グラフのフォントサイズを調整する．
 plt.rcParams.update({'font.size': 16})
 
+# PSKのシミュレーションを行う．
+# 図は`PSK_4_30_100.png`および`PSK_4_30_100.pdf`に保存される．以下同様．
+# 
+# 返り値は(SER, BER)．
+# 多値数，SNR，およびサンプル数を様々に変更して
+# シミュレーションする(課題1，2)．
 psk_test(4, 30, 100, plot=True)
 plt.close()
 psk_test(8, 50, 100, plot=True)
 plt.close()
 psk_test(16, 40, 4000, plot=True)
 plt.close()
+
+# QAMのシミュレーションを行う．
+# 
+# 返り値は(SER, BER)．
+# 多値数，SNR，およびサンプル数を様々に変更して
+# シミュレーションする(課題1，2)．
 qam_test(16, 30, 4000, plot=True)
 plt.close()
 qam_test(64, 30, 4000, plot=True)
 plt.close()
 
+# グラフのフォントサイズを調整する．
 plt.rcParams.update({'font.size': 12})
 
 # PSK/QAM Comparison
-
+# 課題3．サンプル数(`size`)は適宜調整すること．
 size = 10000
 for m in [64, 16, 4]:
     snrs = []
@@ -171,7 +188,7 @@ plt.savefig("PSK_QAM.pdf")
 plt.close()
 
 # PSK Gray Code Comparison
-
+# 課題4．サンプル数(`size`)は適宜調整すること．
 size = 10000
 for m in [64, 16, 4]:
     snrs = []
@@ -208,7 +225,7 @@ plt.savefig("PSK_gray.pdf")
 plt.close()
 
 # QAM Gray Code Comparison
-
+# 課題4．サンプル数(`size`)は適宜調整すること．
 size = 10000
 for m in [64, 16, 4]:
     snrs = []
