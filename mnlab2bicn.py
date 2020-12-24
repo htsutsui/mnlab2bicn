@@ -75,6 +75,10 @@ def calc_ber(src, dst, m):
     -------
     SER
     """
+    if (dst < 0).any():
+        raise ValueError("Negative value(s) are found.")
+    if (src < 0).any():
+        raise ValueError("Negative value(s) are found.")
     x = src ^ dst
 
     # pylint: disable=no-member

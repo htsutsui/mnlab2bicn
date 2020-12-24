@@ -23,6 +23,12 @@ def gray_encode(n):
     -------
     Gray coded object
     """
+    if not isinstance(n, int):
+        if (n < 0).any():
+            raise ValueError("Negative value(s) are found.")
+    else:
+        if n < 0:
+            raise ValueError("Negative value(s) are found.")
     return n ^ n >> 1
 
 
