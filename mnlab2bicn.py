@@ -58,6 +58,8 @@ def calc_ser(src, dst):
     -------
     SER
     """
+    if src.shape != dst.shape:
+        raise ValueError("Shape consistency error.")
     return np.count_nonzero(src != dst) / np.size(src)
 
 
@@ -75,6 +77,8 @@ def calc_ber(src, dst, m):
     -------
     SER
     """
+    if src.shape != dst.shape:
+        raise ValueError("Shape consistency error.")
     if (dst < 0).any():
         raise ValueError("Negative value(s) are found.")
     if (src < 0).any():

@@ -46,6 +46,8 @@ def gray_decode(n):
     """
     i = isinstance(n, int)
     n = np.array([n]) if i else n.copy()
+    if (n < 0).any():
+        raise ValueError("Negative value(s) are found.")
     m = n >> 1
     while not (m == 0).all():
         n ^= m
