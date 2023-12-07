@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+import sys
+import re
+import numpy as np
+
 """
 This module provides gray code coding and decoding functions.
 
@@ -7,8 +11,6 @@ These functions are based on
 <https://rosettacode.org/wiki/Gray_code#Python>
 but extended to support numpy array inputs.
 """
-
-import numpy as np
 
 
 def gray_encode(n):
@@ -56,11 +58,30 @@ def gray_decode(n):
 
 
 def __main():
-    print("DEC,   BIN =>  GRAY => DEC")
-    for i in range(32):
-        gray = gray_encode(i)
-        dec = gray_decode(gray)
-        print(f" {i:>2d}, {i:>05b} => {gray:>05b} => {dec:>2d}")
+    n = 5
+    if len(sys.argv) > 1 and re.match(r'^\d+$', sys.argv[1]):
+        m = int(sys.argv[1])
+        if 1 <= m <= 16:
+            n = m
+    v = 2 ** n - 1
+
+    nd = max(3, len(f"{v:d}"))
+    nb = len(f"{v:b}")
+    nbs = max(4, nb)
+    keys = [("DEC", nd), ("BIN", nbs), ("GRAY", nbs), ("DEC", nd)]
+    keys = [f"{i[0]:>{i[1]}}" for i in keys]
+    print(', '.join([keys[0], ' => '.join(keys[1:])]))
+
+    gray = gray_encode(np.array(range(2 ** n)))
+    dec = gray_decode(gray)
+    for i in range(2 ** n):
+        bin_s = f"{i:>0{nb}b}"
+        gray_s = f"{gray[i]:>0{nb}b}"
+        s = ', '.join([f"{i:>{nd}d}",
+                       ' => '.join([f"{bin_s:>{nbs}}",
+                                    f"{gray_s:>{nbs}}",
+                                    f"{dec[i]:>0{nd}d}"])])
+        print(s)
 
 
 if __name__ == '__main__':
