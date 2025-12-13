@@ -1,7 +1,7 @@
 ---
 jupyter:
   jupytext:
-    formats: ipynb,md,py
+    formats: ipynb,md,py:percent
     text_representation:
       extension: .md
       format_name: markdown
@@ -16,14 +16,20 @@ jupyter:
 # NumPy, Matplotlibの使い方サンプル
 
 
-## NumPy
-
-
 NumPyの`import`
 
 ```python
 import numpy as np
 ```
+
+Matplotlib の`import`
+
+```python
+import matplotlib.pyplot as plt
+```
+
+## NumPy
+
 
 2次元配列
 
@@ -79,7 +85,7 @@ a[0::2]
 ```
 
 ```python
-a[0::2]=10
+a[0::2] = 10
 a
 ```
 
@@ -95,19 +101,19 @@ a[0]
 ```
 
 ```python
-a[0,2]
+a[0, 2]
 ```
 
 ```python
-a[:,2]
+a[:, 2]
 ```
 
 ```python
-a[:,::2]
+a[:, ::2]
 ```
 
 ```python
-a[:,::2]*=10
+a[:, ::2] *= 10
 a
 ```
 
@@ -127,7 +133,7 @@ a.reshape((3, 2))
 ```
 
 ```python
-a.reshape((3, 2),order='F')
+a.reshape((3, 2), order='F')
 ```
 
 ```python
@@ -161,8 +167,8 @@ np.vstack([a, b])
 行列と行列の加算
 
 ```python
-a = np.arange(4).reshape((2,2))
-b = np.arange(4,8).reshape((2,2))
+a = np.arange(4).reshape((2, 2))
+b = np.arange(4, 8).reshape((2, 2))
 a, b
 ```
 
@@ -203,12 +209,6 @@ np.sin(x)
 
 ## Matplotlib
 
-
-Matplotlib の`import`
-
-```python
-import matplotlib.pyplot as plt
-```
 
 プロット例
 
