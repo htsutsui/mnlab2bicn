@@ -92,7 +92,7 @@ def calc_ber(src, dst, m):
         f = np.vectorize(lambda i: bin(i).count('1'))
 
     x = x[np.where(x != 0)]
-    c = np.sum(f(x)) if np.size(x == 0) else 0
+    c = np.sum(f(x)) if np.size(x) > 0 else 0
     return c / (np.log2(m)*np.size(src))
 
 
@@ -110,7 +110,7 @@ def scatter_plot(x, filename=None, alpha=0.1, fontsize=None):
 
     Returns
     -------
-    SER
+    None
     """
     plt.scatter(x.real, x.imag, alpha=alpha)
     plt.ylim(-1.2, 1.2)

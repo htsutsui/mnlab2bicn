@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-import sys
-import re
 import numpy as np
 
 """
@@ -11,6 +9,27 @@ These functions are based on
 <https://rosettacode.org/wiki/Gray_code#Python>
 but extended to support numpy array inputs.
 """
+
+
+def _validate_non_negative(n):
+    """Validate that input contains no negative values.
+
+    Parameters
+    ----------
+    n: int or array_like
+        Value(s) to validate.
+
+    Raises
+    ------
+    ValueError
+        If any negative values are found.
+    """
+    if isinstance(n, (int, np.integer)):
+        if n < 0:
+            raise ValueError("Negative value(s) are found.")
+    else:
+        if (n < 0).any():
+            raise ValueError("Negative value(s) are found.")
 
 
 def gray_encode(n):
@@ -25,12 +44,7 @@ def gray_encode(n):
     -------
     Gray coded object
     """
-    if not isinstance(n, int):
-        if (n < 0).any():
-            raise ValueError("Negative value(s) are found.")
-    else:
-        if n < 0:
-            raise ValueError("Negative value(s) are found.")
+    _validate_non_negative(n)
     return n ^ n >> 1
 
 
@@ -46,18 +60,19 @@ def gray_decode(n):
     -------
     Gray decoded object
     """
-    i = isinstance(n, int)
-    n = np.array([n]) if i else n.copy()
-    if (n < 0).any():
-        raise ValueError("Negative value(s) are found.")
+    is_scalar = isinstance(n, (int, np.integer))
+    n = np.array([n]) if is_scalar else n.copy()
+    _validate_non_negative(n)
     m = n >> 1
     while not (m == 0).all():
         n ^= m
         m >>= 1
-    return n[0] if i else n
+    return n[0] if is_scalar else n
 
 
 def __main():
+    import sys
+    import re
     n = 5
     if len(sys.argv) > 1 and re.match(r'^\d+$', sys.argv[1]):
         m = int(sys.argv[1])
