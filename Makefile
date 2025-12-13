@@ -6,7 +6,8 @@ all: $(ipynb_files)
 
 $(ipynb_files): %.ipynb: %.md
 	jupytext --sync $<
-	touch $@
+	chmod 755 $*.py
+	touch $@ $*.py
 
 clean:
 	rm -f *.pdf *.png *~ .*~
