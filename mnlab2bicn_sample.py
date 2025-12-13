@@ -1,30 +1,71 @@
-#!/usr/bin/env python3
+# ---
+# jupyter:
+#   jupytext:
+#     formats: ipynb,md,py:percent
+#     text_representation:
+#       extension: .py
+#       format_name: percent
+#       format_version: '1.3'
+#       jupytext_version: 1.18.1
+#   kernelspec:
+#     display_name: Python 3
+#     language: python
+#     name: python3
+# ---
 
-"""
-Sample script for MNLab2BICN.
+# %% [markdown]
+# Sample script for MNLab2BICN.
+#
+# メディアネットワーク実験IIB 項目Iで利用するサンプル．
+#
+# PSK および QAM は適切に実装されていません．
+# `# Start of 要修正` から `# End of 要修正` の箇所を修正する必要があります．
+# なお，行中の一部を修正すれば良いというわけではなく，
+# 必要に応じて行の追加が必要になります．
 
-メディアネットワーク実験IIB 項目Iで利用するサンプル．
+# %% [markdown]
+# 必要なファイルを`github`から取り出す．
 
-PSK および QAM は適切に実装されていません．
-`# Start of 要修正` から `# End of 要修正` の箇所を修正する必要があります．
-なお，行中の一部を修正すれば良いというわけではなく，
-必要に応じて行の追加が必要になります．
-"""
+# %%
+# !test -d mnlab2bicn && (cd mnlab2bicn ; git pull) || git clone https://github.com/htsutsui/mnlab2bicn/
+# !cp mnlab2bicn/mnlab2bicn.py .
+# !cp mnlab2bicn/gray.py .
 
+# %% [markdown]
+# `mnlab2bicn`が依存する`gmpy2` (BER計算を高速化する)をインストールする．
+# なお，`gmpy2`が無くてもBER計算は可能(若干遅くなる)なので，エラーが生じる場合は無視すること．
+
+# %%
+# !sudo apt-get update
+# !sudo apt-get install -y libgmp-dev libmpfr-dev libmpc-dev
+# !pip install gmpy2
+
+# %% [markdown]
 # NumPy と Matplotlib を使うので`import`する．
+
+# %%
 import matplotlib.pyplot as plt
 import numpy as np
 
+# %% [markdown]
 # 実験で使用するあらかじめ用意されている関数を`import`する．
+
+# %%
 from mnlab2bicn import awgn, calc_ser, calc_ber, \
     int2gray, gray2int, scatter_plot
 
+# %% [markdown]
 # このscript中で利用するdebug用の変数．
-verbose = True  # True だと for loop の処理の状況(進み具合)が確認できる
+
+# %%
+verbose = True # True だと for loop の処理の状況(進み具合)が確認できる
 verbose_awgn = False
 
 
+# %% [markdown]
 # PSKのシミュレーションを行う関数を定義する．
+
+# %%
 def psk_test(m_level, i_snr, i_size, plot=False, gray=False):
     """PSK test
 
@@ -66,7 +107,10 @@ def psk_test(m_level, i_snr, i_size, plot=False, gray=False):
     return (calc_ser(src, dst), calc_ber(src, dst, m_level))
 
 
+# %% [markdown]
 # QAMのシミュレーションを行う関数を定義する．
+
+# %%
 def qam_test(m_level, i_snr, i_size, plot=False, gray=False):
     """QAM test
 
@@ -126,37 +170,49 @@ def qam_test(m_level, i_snr, i_size, plot=False, gray=False):
     return (calc_ser(src, dst), calc_ber(src, dst, m_level))
 
 
+# %% [markdown]
 # グラフのフォントサイズを調整する．
+
+# %%
 plt.rcParams.update({'font.size': 16})
 
-# PSKのシミュレーションを行う．
-# 図は`PSK_4_30_100.png`および`PSK_4_30_100.pdf`に保存される．以下同様．
+# %% [markdown]
+# PSKのシミュレーションを行う．図は`PSK_4_30_100.png`および`PSK_4_30_100.pdf`に保存される．以下同様．
 #
-# 返り値は(SER, BER)．
-# 多値数，SNR，およびサンプル数を様々に変更して
-# シミュレーションする(課題1，2)．
-psk_test(4, 30, 100, plot=True)
-plt.close()
-psk_test(8, 50, 100, plot=True)
-plt.close()
-psk_test(16, 40, 4000, plot=True)
-plt.close()
+# 返り値は(SER, BER)．多値数，SNR，およびサンプル数を様々に変更してシミュレーションする(課題1，2)．
 
+# %%
+psk_test(4, 30, 100, plot=True)
+
+# %%
+psk_test(8, 50, 100, plot=True)
+
+# %%
+psk_test(16, 40, 4000, plot=True)
+
+# %% [markdown]
 # QAMのシミュレーションを行う．
 #
-# 返り値は(SER, BER)．
-# 多値数，SNR，およびサンプル数を様々に変更して
-# シミュレーションする(課題1，2)．
-qam_test(16, 30, 4000, plot=True)
-plt.close()
-qam_test(64, 30, 4000, plot=True)
-plt.close()
+# 返り値は(SER, BER)．多値数，SNR，およびサンプル数を様々に変更してシミュレーションする(課題1，2)．
 
+# %%
+qam_test(16, 30, 4000, plot=True)
+
+# %%
+qam_test(64, 30, 4000, plot=True)
+
+# %% [markdown]
 # グラフのフォントサイズを調整する．
+
+# %%
 plt.rcParams.update({'font.size': 12})
 
+# %% [markdown]
 # PSK/QAM Comparison
+#
 # 課題3．サンプル数(`size`)は適宜調整すること．
+
+# %%
 size = 10000
 for m in [64, 16, 4]:
     snrs = []
@@ -190,10 +246,13 @@ plt.tight_layout()
 plt.ylim(top=1)
 plt.savefig("PSK_QAM.png")
 plt.savefig("PSK_QAM.pdf")
-plt.close()
 
+# %% [markdown]
 # PSK Gray Code Comparison
+#
 # 課題4．サンプル数(`size`)は適宜調整すること．
+
+# %%
 size = 10000
 for m in [64, 16, 4]:
     snrs = []
@@ -227,10 +286,13 @@ plt.tight_layout()
 plt.ylim(top=1)
 plt.savefig("PSK_gray.png")
 plt.savefig("PSK_gray.pdf")
-plt.close()
 
+# %% [markdown]
 # QAM Gray Code Comparison
+#
 # 課題4．サンプル数(`size`)は適宜調整すること．
+
+# %%
 size = 10000
 for m in [64, 16, 4]:
     snrs = []
@@ -264,4 +326,3 @@ plt.tight_layout()
 plt.ylim(top=1)
 plt.savefig("QAM_gray.png")
 plt.savefig("QAM_gray.pdf")
-plt.close()
