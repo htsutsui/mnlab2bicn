@@ -93,7 +93,7 @@ def calc_ber(src, dst, m):
 
     x = x[np.where(x != 0)]
     c = np.sum(f(x)) if np.size(x) > 0 else 0
-    return c / (np.log2(m)*np.size(src))
+    return (c / (np.log2(m)*np.size(src))).item()
 
 
 def scatter_plot(x, filename=None, alpha=0.1, fontsize=None):
