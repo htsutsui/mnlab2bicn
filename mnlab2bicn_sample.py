@@ -27,7 +27,8 @@
 # 必要なファイルを`github`から取り出す．
 
 # %%
-# !test -d mnlab2bicn && (cd mnlab2bicn ; git pull) || git clone https://github.com/htsutsui/mnlab2bicn/
+# !test -d mnlab2bicn && (cd mnlab2bicn ; git pull) || \
+#   git clone https://github.com/htsutsui/mnlab2bicn/
 # !cp mnlab2bicn/mnlab2bicn.py .
 # !cp mnlab2bicn/gray.py .
 
@@ -58,7 +59,7 @@ from mnlab2bicn import awgn, calc_ser, calc_ber, \
 # このscript中で利用するdebug用の変数．
 
 # %%
-verbose = True # True だと for loop の処理の状況(進み具合)が確認できる
+verbose = True  # True だと for loop の処理の状況(進み具合)が確認できる
 verbose_awgn = False
 
 

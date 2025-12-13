@@ -17,13 +17,19 @@
 # # NumPy, Matplotlibの使い方サンプル
 
 # %% [markdown]
-# ## NumPy
-
-# %% [markdown]
 # NumPyの`import`
 
 # %%
 import numpy as np
+
+# %% [markdown]
+# Matplotlib の`import`
+
+# %%
+import matplotlib.pyplot as plt
+
+# %% [markdown]
+# ## NumPy
 
 # %% [markdown]
 # 2次元配列
@@ -72,7 +78,7 @@ a[4:]
 a[0::2]
 
 # %%
-a[0::2]=10
+a[0::2] = 10
 a
 
 # %% [markdown]
@@ -86,16 +92,16 @@ a
 a[0]
 
 # %%
-a[0,2]
+a[0, 2]
 
 # %%
-a[:,2]
+a[:, 2]
 
 # %%
-a[:,::2]
+a[:, ::2]
 
 # %%
-a[:,::2]*=10
+a[:, ::2] *= 10
 a
 
 # %% [markdown]
@@ -112,7 +118,7 @@ a.shape
 a.reshape((3, 2))
 
 # %%
-a.reshape((3, 2),order='F')
+a.reshape((3, 2), order='F')
 
 # %%
 a.flatten()
@@ -141,8 +147,8 @@ np.vstack([a, b])
 # 行列と行列の加算
 
 # %%
-a = np.arange(4).reshape((2,2))
-b = np.arange(4,8).reshape((2,2))
+a = np.arange(4).reshape((2, 2))
+b = np.arange(4, 8).reshape((2, 2))
 a, b
 
 # %%
@@ -180,12 +186,6 @@ np.sin(x)
 
 # %% [markdown]
 # ## Matplotlib
-
-# %% [markdown]
-# Matplotlib の`import`
-
-# %%
-import matplotlib.pyplot as plt
 
 # %% [markdown]
 # プロット例
