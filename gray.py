@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-import numpy as np
-
 """
 This module provides gray code coding and decoding functions.
 
@@ -9,6 +7,8 @@ These functions are based on
 <https://rosettacode.org/wiki/Gray_code#Python>
 but extended to support numpy array inputs.
 """
+
+import numpy as np
 
 
 def _validate_non_negative(n):
