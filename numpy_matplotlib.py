@@ -38,7 +38,7 @@ import matplotlib.pyplot as plt
 np.array([[1, 2, 3], [4, 5, 6]])
 
 # %%
-np.array(np.mat("1 2 3 ; 4 5 6"))
+np.array(np.asmatrix("1 2 3 ; 4 5 6"))
 
 # %% [markdown]
 # 3$\times$4一様乱数行列
@@ -85,7 +85,7 @@ a
 # 要素へのアクセス(2次元)
 
 # %%
-a = np.array(np.mat("1 2 3 ; 4 5 6"))
+a = np.array(np.asmatrix("1 2 3 ; 4 5 6"))
 a
 
 # %%
@@ -108,7 +108,7 @@ a
 # 要素の並び替えおよび1次元化
 
 # %%
-a = np.array(np.mat("1 2 3 ; 4 5 6"))
+a = np.array(np.asmatrix("1 2 3 ; 4 5 6"))
 a
 
 # %%
