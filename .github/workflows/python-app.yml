@@ -26,7 +26,7 @@ jobs:
         sudo apt-get install libmpfr-dev
         sudo apt-get install libmpc-dev
         python -m pip install --upgrade pip
-        pip install flake8 pytest
+        pip install flake8 pytest mypy pylint
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
@@ -37,3 +37,9 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+    - name: Test with mypy
+      run: |
+        mypy .
+    - name: Test with pylint
+      run: |
+        pylint .
