@@ -1,0 +1,2 @@
+[MESSAGES CONTROL]
+disable=pointless-statement, missing-module-docstring, import-outside-toplevel, invalid-name
